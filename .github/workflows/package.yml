@@ -12,7 +12,7 @@ on:
         description: "OS profile of the images"
         type: choice
         options: ["27", "26", "17"]
-        default: "27"
+        default: "17"
       init_data:
         description: "Create a NEW installation seed if no saved seed exists (iPadOS 27 only)"
         type: boolean
