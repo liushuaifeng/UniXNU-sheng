@@ -82,6 +82,20 @@ jobs:
           p.write_text(s)
           print('mesa: git apply, falling back to patch -p1 -F3 -l')
           PY
+      - name: relax wifi source fetch
+        run: |
+          python3 - <<'PY'
+          import pathlib
+
+          p = pathlib.Path('device/drivers/Ath12kWifi/tools/fetch-sources.py')
+          s = p.read_text()
+          old = '"sparse-checkout", "add", *source["paths"]'
+          new = '"sparse-checkout", "set", "--no-cone", *[x.lstrip(chr(47)) for x in source["paths"]]'
+          if old not in s:
+              raise SystemExit('anchor missing in fetch-sources.py')
+          p.write_text(s.replace(old, new, 1))
+          print('wifi sparse-checkout: set --no-cone, relative paths')
+          PY
       - name: tools
         run: |
           brew install dtc llvm lld cmake mtools ninja glslang shaderc spirv-tools bison pkgconf rustup blacktop/tap/ipsw
