@@ -12,7 +12,7 @@ on:
         description: "OS profile of the images"
         type: choice
         options: ["27", "26", "17"]
-        default: "17"
+        default: "27"
       init_data:
         description: "Create a NEW installation seed if no saved seed exists (iPadOS 27 only)"
         type: boolean
@@ -101,7 +101,7 @@ jobs:
       - name: prepare preserved Data seed
         if: inputs.os == '27'
         env:
-          INIT_DATA: ${{ inputs.init_data }}
+          INIT_DATA: true
         run: |
           python3 - <<'PY'
           import hashlib, json, os, pathlib, urllib.request
@@ -128,7 +128,7 @@ jobs:
         env:
           UNIXNU_UNIQUE_CHIP_ID: ${{ secrets.UNIXNU_UNIQUE_CHIP_ID }}
           GITHUB_TOKEN: ${{ github.token }}
-          INIT_DATA: ${{ inputs.init_data }}
+          INIT_DATA: true
           OS_PROFILE: ${{ inputs.os }}
         run: |
           args=(--os "$OS_PROFILE" --uefi ../uefi-sheng)
