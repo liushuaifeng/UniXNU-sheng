@@ -136,6 +136,10 @@ jobs:
           if not path.is_file() and os.environ['INIT_DATA'] != 'true':
               raise SystemExit('No saved seed. Supply the ORIGINAL seed for an existing installation, or select init_data for a FIRST installation')
           PY
+      - uses: actions/cache@v4
+        with:
+          path: UniXNU/out/sheng/*/*/tree/.cache/firmware/sheng
+          key: sheng-firmware-inputs-v1
       - name: package
         working-directory: device
         env:
