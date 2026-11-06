@@ -161,7 +161,7 @@ CI_ENABLE_METAL_GPU = "0"
 "ipados-17.7.11-21H461" = "sheng_defconfig"
 
 ["os_overrides"."ipados-17.7.11-21H461"."components"]
-"include" = ["ArmDTPlatform", "ArmCpu", "SoftwareAES", "ShengUfs", "VirtioMmioBlock", "RamBlock", "Adreno740", "AdrenoMetal", "GopFramebuffer", "ShengHidInput", "ShengNovatekTouch", "QcomGeniSpi", "AppleKeyStoreState", "XnuPrelink", "DarwinBoot", "VerifiedRoot", "ShengPreflight", "AirNir", "Ath12kWifi"]
+"include" = ["ArmDTPlatform", "ArmCpu", "SoftwareAES", "ShengUfs", "VirtioMmioBlock", "RamBlock", "Adreno740", "AdrenoMetal", "GopFramebuffer", "ShengHidInput", "ShengNovatekTouch", "QcomGeniSpi", "AppleKeyStoreState", "XnuPrelink", "DarwinBoot", "VerifiedRoot", "ShengPreflight", "AirNir"]
 
 ["os_overrides"."ipados-17.7.11-21H461"."kernel"]
 "archives" = ["build-corecrypto-14.py", "build-corecrypto-14.py --namespace", "component:ArmDTPlatform", "component:ArmCpu", "component:SoftwareAES", "build-software-aes-bindings.py", "component:ShengUfs", "component:VirtioMmioBlock", "component:RamBlock", "build-virtio-mmio-bindings.py --component RamBlock --directory build/ram-block", "build-virtio-mmio-bindings.py --component VirtioMmioBlock", "build-mockfs-fixture.py", "build-sheng-platform-power.py", "build-boot-progress.py", "build-libpthread-kernel.py", "component:Adreno740", "build-adreno740-kits.py", "build-adreno740-accelerator.py", "component:ShengHidInput", "component:AppleKeyStoreState", "build-gop-legacy-display.py"]
@@ -181,7 +181,7 @@ CI_ENABLE_METAL_GPU = "0"
 "remove" = ["payload.root_policies", "payload.runtime"]
 
 ["os_overrides"."ipados-26.5.2-23F84"."components"]
-"include" = ["ArmDTPlatform", "ArmCpu", "SoftwareAES", "ShengUfs", "VirtioMmioBlock", "RamBlock", "Adreno740", "AdrenoMetal", "GopFramebuffer", "ShengHidInput", "ShengNovatekTouch", "QcomGeniSpi", "AppleKeyStoreState", "XnuPrelink", "DarwinBoot", "VerifiedRoot", "ShengPreflight", "AirNir", "Ath12kWifi"]
+"include" = ["ArmDTPlatform", "ArmCpu", "SoftwareAES", "ShengUfs", "VirtioMmioBlock", "RamBlock", "Adreno740", "AdrenoMetal", "GopFramebuffer", "ShengHidInput", "ShengNovatekTouch", "QcomGeniSpi", "AppleKeyStoreState", "XnuPrelink", "DarwinBoot", "VerifiedRoot", "ShengPreflight", "AirNir"]
 
 ["os_overrides"."ipados-26.5.2-23F84"."kernel"]
 "archives" = ["build-corecrypto-14.py", "build-corecrypto-14.py --namespace", "component:ArmDTPlatform", "component:ArmCpu", "component:SoftwareAES", "build-software-aes-bindings.py", "component:ShengUfs", "build-sheng-source-storage.py --policy-dir scripts/policies/ipados-26.5.2-23F84", "component:VirtioMmioBlock", "component:RamBlock", "build-virtio-mmio-bindings.py --component RamBlock --directory build/ram-block", "build-virtio-mmio-bindings.py --component VirtioMmioBlock", "build-mockfs-fixture.py", "build-sheng-platform-power.py", "build-boot-progress.py", "build-libpthread-kernel.py", "component:Adreno740", "build-adreno740-kits.py", "build-adreno740-accelerator.py", "component:ShengHidInput", "component:AppleKeyStoreState", "build-gop-legacy-display.py"]
