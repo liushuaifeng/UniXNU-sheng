@@ -82,6 +82,21 @@ jobs:
           p.write_text(s)
           print('mesa: git apply, falling back to patch -p1 -F3 -l')
           PY
+      - name: disable wifi module
+        run: |
+          python3 - <<'PY'
+          import pathlib
+
+          p = pathlib.Path('device/scripts/build-ath12k-wifi.py')
+          s = p.read_text()
+          anchor = "from kernel_target import TRIPLE"
+          if anchor not in s:
+              raise SystemExit('anchor missing in build-ath12k-wifi.py')
+          if 'raise SystemExit(0)  # wifi skipped' not in s:
+              s = s.replace(anchor, anchor + "\nraise SystemExit(0)  # wifi skipped", 1)
+              p.write_text(s)
+          print('wifi module disabled for this build')
+          PY
       - name: tools
         run: |
           brew install dtc llvm lld cmake mtools ninja glslang shaderc spirv-tools bison pkgconf rustup blacktop/tap/ipsw
