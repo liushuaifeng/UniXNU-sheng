@@ -158,6 +158,10 @@ jobs:
         with:
           path: UniXNU/out/sheng/*/*/tree/.cache/firmware/sheng
           key: sheng-firmware-inputs-v1
+      - name: prefetch wifi sources
+        run: |
+          cd device/drivers/Ath12kWifi
+          bash -x tools/fetch-sources.sh
       - name: package
         working-directory: device
         env:
