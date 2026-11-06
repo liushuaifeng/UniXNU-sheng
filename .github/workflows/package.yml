@@ -55,14 +55,18 @@ jobs:
         run: |
           python3 - <<'PY'
           import pathlib
+
           p = pathlib.Path('UniXNU/scripts/build-boot-runtime.py')
-          s = p.read_text()
-          old = "run('git', '-C', mesa, 'apply', ROOT / patch)"
-          new = "run('git', '-C', mesa, 'apply', '-C1', ROOT / patch)"
-          if old not in s:
-              raise SystemExit('anchor missing in build-boot-runtime.py')
-          p.write_text(s.replace(old, new, 1))
-          print('relaxed mesa patch application to -C1')
+          lines = p.read_text().splitlines(keepends=True)
+          for i, line in enumerate(lines):
+              if line.strip().startswith("run('git', '-C', mesa, 'apply'"):
+                  indent = line[:len(line) - len(line.lstrip())]
+                  lines[i] = indent + "run('patch', '-d', mesa, '-p1', '-F3', '-i', ROOT / patch)\\n"
+                  break
+          else:
+              raise SystemExit('apply line not found')
+          p.write_text(''.join(lines))
+          print('switched mesa patches to patch -p1 -F3')
           PY
       - name: tools
         run: |
