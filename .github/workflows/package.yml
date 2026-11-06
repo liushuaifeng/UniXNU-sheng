@@ -51,6 +51,19 @@ jobs:
           repository: UniXNU/uefi-sheng
           path: uefi-sheng
           submodules: recursive
+      - name: relax mesa patch application
+        run: |
+          python3 - <<'PY'
+          import pathlib
+          p = pathlib.Path('UniXNU/scripts/build-boot-runtime.py')
+          s = p.read_text()
+          old = "run('git', '-C', mesa, 'apply', ROOT / patch)"
+          new = "run('git', '-C', mesa, 'apply', '-C1', ROOT / patch)"
+          if old not in s:
+              raise SystemExit('anchor missing in build-boot-runtime.py')
+          p.write_text(s.replace(old, new, 1))
+          print('relaxed mesa patch application to -C1')
+          PY
       - name: tools
         run: |
           brew install dtc llvm lld cmake mtools ninja glslang shaderc spirv-tools bison pkgconf rustup blacktop/tap/ipsw
